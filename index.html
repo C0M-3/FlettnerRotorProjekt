@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flettner-Rotor Demonstrator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-dark bg-success px-3 py-2 sticky-top shadow-sm">
+    <span class="navbar-brand mb-0 h6 fw-semibold">
+      <i class="bi bi-wind me-2"></i>Flettner-Rotor Demonstrator
+    </span>
+    <span class="badge bg-white text-success fw-semibold">Hochschulprojekt</span>
+  </nav>
+
+  <div class="container py-4" style="max-width: 540px;">
+
+    <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
+      <div class="card-body text-center py-5 px-4 bg-success bg-opacity-10">
+        <img src="FlettnerRotor.jpg" alt="Flettner-Rotor-Demonstrator" class="img-fluid rounded mb-3 d-block mx-auto" style="max-height:20rem;">
+        <h1 class="h4 fw-semibold mb-2">Flettner-Rotor-Demonstrator</h1>
+        <p class="text-muted small mb-3">
+          Ein selbst gebautes Modell zur Veranschaulichung des Magnus-Effekts
+          und seiner Anwendung im Schiffsantrieb.
+        </p>
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+          <span class="badge rounded-pill bg-success bg-opacity-25 text-success">Magnus-Effekt</span>
+          <span class="badge rounded-pill bg-success bg-opacity-25 text-success">Segelantrieb</span>
+          <span class="badge rounded-pill bg-success bg-opacity-25 text-success">Windenergie</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+      <div class="card-body p-4">
+        <h2 class="h6 fw-semibold mb-2">
+          <i class="bi bi-info-circle-fill text-success me-2"></i>
+          Was macht dieser Demonstrator?
+        </h2>
+        <p class="text-muted small mb-0">
+          Der Flettner-Rotor-Demonstrator zeigt, wie ein rotierender Zylinder im
+          Windstrom durch den Magnus-Effekt eine Querkraft erzeugt – das
+          Grundprinzip des Windrotor-Schiffsantriebs. In diesem Modell wird der
+          Effekt durch einen Elektromotor demonstriert, der den Rotor in Drehung
+          versetzt.
+        </p>
+      </div>
+    </div>
+
+    <p class="text-uppercase text-muted small fw-semibold mb-2 ms-1" style="letter-spacing:.06em;">Mehr Informationen</p>
+
+    <div class="row g-3 mb-3">
+      <div class="col-6">
+        <button id="btn-handbuch" onclick="togglePanel('handbuch')" class="btn btn-outline-success w-100 h-100 rounded-4 py-3 text-start d-flex flex-column gap-1">
+          <i class="bi bi-book fs-4"></i>
+          <span class="fw-semibold small">Handbuch</span>
+          <span class="text-muted" style="font-size:.7rem;">PDF · durchblätterbar</span>
+        </button>
+      </div>
+      <div class="col-6">
+        <button id="btn-schaltplan" onclick="togglePanel('schaltplan')" class="btn btn-outline-success w-100 h-100 rounded-4 py-3 text-start d-flex flex-column gap-1">
+          <i class="bi bi-diagram-3 fs-4"></i>
+          <span class="fw-semibold small">Schaltplan</span>
+          <span class="text-muted" style="font-size:.7rem;">Bild · ansehen</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="panel-handbuch" class="card border-0 shadow-sm rounded-4 mb-3 d-none">
+      <div class="card-header bg-white border-bottom rounded-top-4 d-flex align-items-center justify-content-between py-2 px-3">
+        <span class="small fw-semibold">
+          <i class="bi bi-book text-success me-1"></i>Handbuch
+        </span>
+        <a href="HandbuchFlettner.pdf" download class="btn btn-sm btn-success rounded-pill px-3">
+          <i class="bi bi-download me-1"></i>Herunterladen
+        </a>
+      </div>
+      <div class="card-body p-0 rounded-bottom-4 overflow-hidden">
+        <iframe
+          src="HandbuchFlettner.pdf"
+          width="100%"
+          height="500"
+          style="border:none; display:block;"
+          title="Handbuch Flettner-Rotor">
+          <p class="text-muted small p-3 text-center">
+            Dein Browser unterstützt keine PDF-Vorschau.
+            <a href="HandbuchFlettner.pdf" class="text-success">Direkt öffnen</a>
+          </p>
+        </iframe>
+      </div>
+    </div>
+
+    <div id="panel-schaltplan" class="card border-0 shadow-sm rounded-4 mb-4 d-none">
+      <div class="card-header bg-white border-bottom rounded-top-4 d-flex align-items-center justify-content-between py-2 px-3">
+        <span class="small fw-semibold">
+          <i class="bi bi-diagram-3 text-success me-1"></i>Schaltplan
+        </span>
+        <a href="SchaltplanFlettnerV05_Steckplatine.png" download class="btn btn-sm btn-success rounded-pill px-3">
+          <i class="bi bi-download me-1"></i>Herunterladen
+        </a>
+      </div>
+      <div class="card-body p-2 bg-secondary bg-opacity-10 rounded-bottom-4">
+        <img
+          id="schaltplan-img"
+          src="SchaltplanFlettnerV05_Steckplatine.png"
+          alt="Schaltplan des Flettner-Rotor-Demonstrators"
+          class="img-fluid rounded-3 d-block mx-auto"
+          onerror="this.style.display='none'; document.getElementById('schaltplan-placeholder').classList.remove('d-none');"
+        />
+        <div id="schaltplan-placeholder" class="d-none d-flex flex-column align-items-center justify-content-center gap-3 py-5">
+          <i class="bi bi-image text-secondary" style="font-size:3rem;"></i>
+          <p class="text-muted small text-center mb-0">
+            Schaltplan noch nicht eingebunden.<br>
+            Datei <code>SchaltplanFlettnerV05_Steckplatine.png</code> in denselben Ordner legen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card border-0 bg-success bg-opacity-10 rounded-4 mb-2">
+      <div class="card-body py-3 px-4">
+        <p class="small mb-1 text-muted">
+          <i class="bi bi-person-fill text-success me-1"></i>
+          Projektarbeit von: <span class="fw-semibold text-dark">Mina Kersten</span>
+        </p>
+        <p class="small mb-0 text-muted">
+          <i class="bi bi-tools text-success me-1"></i>
+          Projekt betreut von: <span class="fw-semibold text-dark">Dr. rer. nat. Albert Einstein</span>
+        </p>
+      </div>
+    </div>
+
+    <p class="text-center text-muted mt-3" style="font-size:.7rem;">
+      Flettner-Rotor-Demonstrator · Hochschulprojekt
+    </p>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function togglePanel(id) {
+      ['handbuch', 'schaltplan'].forEach(p => {
+        const panel = document.getElementById('panel-' + p);
+        const btn   = document.getElementById('btn-' + p);
+        if (p === id) {
+          const isOpen = !panel.classList.contains('d-none');
+          panel.classList.toggle('d-none', isOpen);
+          btn.classList.toggle('active', !isOpen);
+        } else {
+          panel.classList.add('d-none');
+          btn.classList.remove('active');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
