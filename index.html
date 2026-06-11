@@ -16,7 +16,7 @@
     <span class="badge bg-white text-success fw-semibold">Hochschulprojekt</span>
   </nav>
 
-  <div class="container py-4" style="max-width: 540px;">
+  <div class="container py-4" style="max-width: 850px;">
 
     <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
       <div class="card-body text-center py-5 px-4 bg-success bg-opacity-10">
@@ -142,18 +142,22 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function togglePanel(id) {
-      ['handbuch', 'schaltplan'].forEach(p => {
-        const panel = document.getElementById('panel-' + p);
-        const btn   = document.getElementById('btn-' + p);
-        if (p === id) {
-          const isOpen = !panel.classList.contains('d-none');
-          panel.classList.toggle('d-none', isOpen);
-          btn.classList.toggle('active', !isOpen);
-        } else {
-          panel.classList.add('d-none');
-          btn.classList.remove('active');
-        }
+      const panels = ['handbuch', 'schaltplan'];
+
+      const clickedPanel = document.getElementById('panel-' + id);
+      const clickedBtn = document.getElementById('btn-' + id);
+
+      const isAlreadyOpen = !clickedPanel.classList.contains('d-none');
+
+      panels.forEach(p => {
+        document.getElementById('panel-' + p).classList.add('d-none');
+        document.getElementById('btn-' + p).classList.remove('active');
       });
+
+      if (!isAlreadyOpen) {
+        clickedPanel.classList.remove('d-none');
+        clickedBtn.classList.add('active');
+      }
     }
   </script>
 
